@@ -12,29 +12,29 @@ public class ProductUseCase {
         this.repository = repository;
     }
 
-    public void registrarproducto(int id, String nombre, int stock) {
-        Product producto = new Product(id, nombre, stock);
+    public void registrarproducto(int productoid, String nombreProducto, int stock) {
+        Product producto = new Product(productoid, nombreProducto, stock);
         repository.guardar(producto);
     }
 
-    public Product obtenerproducto(int id) {
-        return repository.buscarPorId(id);
+    public Product obtenerproducto(int productoid) {
+        return repository.buscarPorId(productoid);
     }
 
     public List<Product> listarproductos() {
         return repository.listarTodos();
     }
 
-    public void actualizarproducto(int id, String nombre, int stock) {
-        Product producto = new Product(id, nombre, stock);
+    public void actualizarproducto(int productoid, String nombreProducto, int stock) {
+        Product producto = new Product(productoid, nombreProducto, stock);
         repository.actualizar(producto);
     }
 
-    public void eliminarproducto(int id) {
-        repository.eliminar(id);
+    public void eliminarproducto(int productoid) {
+        repository.eliminar(productoid);
     }
 
-    // Métodos duplicados eliminados y completados
+  
 
     public List<Product> listarProductos() {
         return repository.listarTodos();

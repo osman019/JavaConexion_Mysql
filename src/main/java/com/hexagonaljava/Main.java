@@ -26,15 +26,24 @@ public class Main {
             int option;
 
            do {
-            System.out.println("**GESTION DE CLIENTES**");
+            System.out.println("---------------------------------");
+            System.out.println("-     GESTION DE CLIENTES       -");
+            System.out.println("---------------------------------");
             System.out.println("Seleccione una opcion");
             System.out.println("1. Gestionar Clientes");
             System.out.println("2. listar cliente");
             System.out.println("3. Actualizar datos de cliente");
-            System.out.println("**GESTION DE PRODUCTOS**");
-            System.out.println("4. Gestionar productos");
-            System.out.println("5. Listar productos");
+            System.out.println("4. Eliminar cliente");
+            System.out.println("---------------------------------");
+            System.out.println("-     GESTION DE PRODUCTOS      -");
+            System.out.println("---------------------------------");
+            System.out.println("5. Gestionar productos");
+            System.out.println("6. Listar productos");
+            System.out.println("7. Eliminar producto");
+            System.out.println("8. Obtener producto");
+            System.out.println("9. Actualizar producto");
             System.out.println("0. Salir");
+            System.out.println("----------------------------------");
             System.out.println("Ingrese opcion");
 
             option = teclado.nextInt();
@@ -70,38 +79,90 @@ public class Main {
                     case 3:
                 
                     System.out.println("Ingrese el id del cliente que desea actualizar ");
-                    
-                     teclado.nextLine(); 
-                    case 4:
-                     
-                     System.out.println("Ingrese el ID del producto: ");
-                     int productoid = teclado.nextInt();
-                     teclado.nextLine(); 
+                       id = teclado.nextInt();
+                      teclado.nextLine();
+                      System.out.println("Ingrese su nuevo nombre: ");
+                       nombre = teclado.nextLine();
+     
+                      System.out.println("Ingrese su nuevo email: ");
+                       email = teclado.nextLine();
+     
+                      clientUseCase.actualizarCliente(id, nombre, email);
+                      System.out.println("CLIENTE ACUALIZADO CON EXITO");
+                   
 
-                     System.out.println("Ingrese el nombre del producto: ");
-                     String nombreProducto = teclado.nextLine();
 
-                     System.out.println("Ingrese Stock del producto: ");
-                     int stock = teclado.nextInt();
-
-                     productUseCase.registrarproducto(productoid, nombreProducto, stock);
-                     System.out.println("Producto registrado exitosamente.");
-                
-
-                    break;
+                       case 4:
+                      System.out.println("Ingrese el id del cliente que desea eliminar");
+                      id = teclado.nextInt();
+                      teclado.nextLine();
+                      clientUseCase.eliminarCliente(id);
+                      System.out.println("CLIENTE ELIMINADO CON EXITO");
 
                     case 5:
-                      
-                        List<Product> productos = productUseCase.listarProductos();
-                        System.out.println("Lista de Productos:");
-                        for (Product producto : productos) {
-                            System.out.println(producto);
-                        }
+                    System.out.println("Ingrese el ID del producto: ");
+                    int productoid = teclado.nextInt();
+                    teclado.nextLine(); 
+
+                    System.out.println("Ingrese el nombre del producto: ");
+                    String nombreProducto = teclado.nextLine();
+
+                    System.out.println("Ingrese Stock del producto: ");
+                    int stock = teclado.nextInt();
+
+                    productUseCase.registrarproducto(productoid, nombreProducto, stock);
+                    System.out.println("Producto registrado exitosamente.");
+                    
 
                     break;
+                    case 6:
+                     
+                    
+                    List<Product> productos = productUseCase.listarProductos();
+                    System.out.println("Lista de Productos:");
+                    for (Product producto : productos) {
+                        System.out.println(producto);
+                    }
 
+                   break;
+                   case 7:
+                     
+                    
+                   System.out.println("Ingrese el id del producto que desea eliminar");
+                   productoid = teclado.nextInt();
+                   productUseCase.eliminarproducto(productoid);
+                   System.out.println("Producto Eliminado Correctamente");
+                  break;
+
+                  case 8:
+                     
+                    
+                  System.out.println("Ingrese el id del producto que desea buscar");
+                  productoid = teclado.nextInt();
+                  teclado.nextLine(); 
+
+
+                  productUseCase.obtenerproducto(productoid);
+                
+                 break;
+                 case 9:
+                     
+                    
+                  System.out.println("Ingrese el id del producto que desea actualizar");
+                  productoid = teclado.nextInt();
+                  teclado.nextLine(); 
+
+                  System.out.println("Ingrese el nuevo nombre del producto");
+                  nombreProducto  = teclado.nextLine();
+
+                  System.out.println("Ingrese el nuevo sctok del producto");
+                  stock = teclado.nextInt();
+
+                  productUseCase.actualizarproducto(productoid, nombreProducto, stock);
+                  System.out.println("Producto Actualizado Correctamente");
+                 break;
                     case 0:
-                    System.out.println("👋 Saliendo...");
+                    System.out.println(" Vuelve pronto ");
                     break;
 
                 default:

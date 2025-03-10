@@ -20,7 +20,7 @@ public class ProductRepositoryImpl implements ProductRepository {
 
     @Override
     public void guardar(Product product) {
-        String sql = "INSERT INTO product (id, name, stock) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO product (id, nombreProducto, stock) VALUES (?, ?, ?)";
         try (Connection conexion = connection.getConexion();
                 PreparedStatement stmt = conexion.prepareStatement(sql)) {
             stmt.setInt(1, product.getId());
@@ -57,7 +57,7 @@ public class ProductRepositoryImpl implements ProductRepository {
                 PreparedStatement stmt = conexion.prepareStatement(sql);
                 ResultSet rs = stmt.executeQuery()) {
             while (rs.next()) {
-                products.add(new Product(rs.getInt("id"), rs.getString("name"), rs.getInt("stock")));
+                products.add(new Product(rs.getInt("id"), rs.getString("nombreProducto"), rs.getInt("stock")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -68,11 +68,13 @@ public class ProductRepositoryImpl implements ProductRepository {
 
     @Override
     public void actualizar(Product product) {
-        String sql = "UPDATE product SET name = ?, stock = ? WHERE id = ?";
+        String sql = "UPDATE product SET nombreProducto = ?, stock = ? WHERE id = ?";
         try (Connection conexion = connection.getConexion();
                 PreparedStatement stmt = conexion.prepareStatement(sql)) {
+                    stmt.setInt(3, product.getId());
             stmt.setString(1, product.getName());
             stmt.setInt(2, product.getstock());
+          
             stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
