@@ -26,27 +26,26 @@ public class Main {
             int option;
 
            do {
-            System.out.println("-------GESTION DE CLIENTES---------");
+            System.out.println("**GESTION DE CLIENTES**");
             System.out.println("Seleccione una opcion");
             System.out.println("1. Gestionar Clientes");
             System.out.println("2. listar cliente");
             System.out.println("3. Actualizar datos de cliente");
-            System.out.println("-------GESTION DE PRODUCTOS---------");
-            System.out.println("3. Gestionar productos");
-            System.out.println("4. Listar productos");
+            System.out.println("**GESTION DE PRODUCTOS**");
+            System.out.println("4. Gestionar productos");
+            System.out.println("5. Listar productos");
             System.out.println("0. Salir");
             System.out.println("Ingrese opcion");
 
             option = teclado.nextInt();
 
-            teclado.nextLine(); // consumir la nueva linea
-
+            teclado.nextLine(); 
             switch (option) {
                 case 1:
-                  // gestion de clientes
+                 
                  System.out.println("Ingrese el ID del cliente: ");
                  int id = teclado.nextInt();
-                 teclado.nextLine(); // consumir la nueva linea
+                 teclado.nextLine(); 
 
                  System.out.println("Ingrese su nombre: ");
                  String nombre = teclado.nextLine();
@@ -60,7 +59,7 @@ public class Main {
                     break;
 
                 case 2:
-                 // LISTAR CLIENTE
+            
                  List<Client> cliente = clientUseCase.listarClientes();
                  System.out.println("Lista de clientes: ");
                  for (Client client : cliente){
@@ -69,15 +68,15 @@ public class Main {
                     break;
 
                     case 3:
-                    // actualizar clientes 
+                
                     System.out.println("Ingrese el id del cliente que desea actualizar ");
-                    //  int id = teclado.nextInt();
+                    
                      teclado.nextLine(); 
                     case 4:
-                     //Gestion de producto
+                     
                      System.out.println("Ingrese el ID del producto: ");
                      int productoid = teclado.nextInt();
-                     teclado.nextLine(); //consumir la nueva linea
+                     teclado.nextLine(); 
 
                      System.out.println("Ingrese el nombre del producto: ");
                      String nombreProducto = teclado.nextLine();
@@ -92,7 +91,7 @@ public class Main {
                     break;
 
                     case 5:
-                           // Listar Productos
+                      
                         List<Product> productos = productUseCase.listarProductos();
                         System.out.println("Lista de Productos:");
                         for (Product producto : productos) {
