@@ -21,7 +21,7 @@ public class Main {
         ClientUseCase clientUseCase = new ClientUseCase(clientRepository);
         ProductUseCase productUseCase = new ProductUseCase(productRepository);
 
-        
+       
         try(Scanner teclado = new Scanner(System.in)){
             int option;
 
@@ -34,18 +34,21 @@ public class Main {
             System.out.println("2. listar cliente");
             System.out.println("3. Actualizar datos de cliente");
             System.out.println("4. Eliminar cliente");
+            System.out.println("                                 ");
             System.out.println("---------------------------------");
             System.out.println("-     GESTION DE PRODUCTOS      -");
             System.out.println("---------------------------------");
             System.out.println("5. Gestionar productos");
             System.out.println("6. Listar productos");
             System.out.println("7. Eliminar producto");
-            System.out.println("8. Obtener producto");
-            System.out.println("9. Actualizar producto");
+            System.out.println("8. Actualizar producto");
             System.out.println("0. Salir");
             System.out.println("----------------------------------");
-            System.out.println("Ingrese opcion");
-
+            System.out.println("Ingrese  opcion: ");
+            while (!teclado.hasNextInt()) { 
+                System.out.println("¡Entrada inválida. Ingrese solo numeros validos!.");
+                teclado.next();
+            }
             option = teclado.nextInt();
 
             teclado.nextLine(); 
@@ -53,6 +56,10 @@ public class Main {
                 case 1:
                  
                  System.out.println("Ingrese el ID del cliente: ");
+                 while (!teclado.hasNextInt()) { 
+                    System.out.println("¡Entrada no valida. Ingrese solo ID validos!.");
+                    teclado.next();
+                }
                  int id = teclado.nextInt();
                  teclado.nextLine(); 
 
@@ -79,6 +86,10 @@ public class Main {
                     case 3:
                 
                     System.out.println("Ingrese el id del cliente que desea actualizar ");
+                    while (!teclado.hasNextInt()) { 
+                        System.out.println("¡Entrada no valida. Ingrese solo ID validos!.");
+                        teclado.next();
+                    }
                        id = teclado.nextInt();
                       teclado.nextLine();
                       System.out.println("Ingrese su nuevo nombre: ");
@@ -89,18 +100,26 @@ public class Main {
      
                       clientUseCase.actualizarCliente(id, nombre, email);
                       System.out.println("CLIENTE ACUALIZADO CON EXITO");
-                   
+                      break;
 
 
                        case 4:
                       System.out.println("Ingrese el id del cliente que desea eliminar");
+                      while (!teclado.hasNextInt()) { 
+                        System.out.println("¡Entrada no valida. Ingrese solo ID validos!.");
+                        teclado.next();
+                    }
                       id = teclado.nextInt();
                       teclado.nextLine();
                       clientUseCase.eliminarCliente(id);
                       System.out.println("CLIENTE ELIMINADO CON EXITO");
-
+                      break;
                     case 5:
                     System.out.println("Ingrese el ID del producto: ");
+                    while (!teclado.hasNextInt()) { 
+                        System.out.println("¡Entrada no valida. Ingrese solo ID validos!.");
+                        teclado.next();
+                    }
                     int productoid = teclado.nextInt();
                     teclado.nextLine(); 
 
@@ -129,23 +148,17 @@ public class Main {
                      
                     
                    System.out.println("Ingrese el id del producto que desea eliminar");
+                   while (!teclado.hasNextInt()) { 
+                    System.out.println("¡Entrada no valida. Ingrese solo ID validos!.");
+                    teclado.next();
+                }
                    productoid = teclado.nextInt();
                    productUseCase.eliminarproducto(productoid);
                    System.out.println("Producto Eliminado Correctamente");
                   break;
 
-                  case 8:
-                     
-                    
-                  System.out.println("Ingrese el id del producto que desea buscar");
-                  productoid = teclado.nextInt();
-                  teclado.nextLine(); 
-
-
-                  productUseCase.obtenerproducto(productoid);
-                
-                 break;
-                 case 9:
+                 
+                 case 8:
                      
                     
                   System.out.println("Ingrese el id del producto que desea actualizar");
